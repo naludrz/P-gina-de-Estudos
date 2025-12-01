@@ -1,0 +1,494 @@
+<!DOCTYPE html> <!-- Diz ao navegador que estamos usando HTML5 -->
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"> <!-- Permite acentos e caracteres especiais -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade no celular -->
+    <title>Página de Estudos</title> <!-- Título da aba -->
+    <!-- Favicon padrão -->
+    <link rel="icon" href="logo.png" type="image/png">
+
+    <link rel="stylesheet" href="style.css"> <!-- Importação do arquivo CSS -->
+
+    <style>/* ========================= BOX AVISOS ========================= */
+.avisos h3{
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.aviso-item{
+    background: #e8faff;
+    padding: 12px;
+    border-left: 6px solid #9cefff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #1a1a1a;
+    box-shadow: 0 2px 6px rgba(0, 0, 0,0.05);
+}
+.avisos-imagem{
+    width: 280px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+
+}
+
+.avisos-texto{
+    flex: 1;
+}
+
+.avisos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* ========================= EVENTO GRANDE ========================= */
+
+.evento-grande {
+    width: 90%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 6px solid #9cefff;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.evento-grande img {
+    width: 450px;
+    border-radius: 10px;
+}
+
+.titulo-evento {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.texto-evento p {
+    color: #444;
+}
+
+/* ========================= MENU LATERAL ========================= */
+
+#menu-toggle { display: none; }
+
+.menu-icon {
+    font-size: 32px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #9cefff;
+    cursor: pointer;
+    z-index: 1000;
+    border: 1px solid #d1d5db;
+}
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: whitesmoke;
+    position: fixed;
+    top: 0;
+    left: -260px;
+    padding: 25px 25px 25px 25px;
+    box-sizing: border-box;
+    transition: 0.3s;
+    border-right: 4px solid #9cefff;
+    z-index: 9999;
+}
+
+#menu-toggle:checked ~ .sidebar {
+    left: 0;
+}
+
+.close-btn {
+    font-size: 22px;
+    cursor: pointer;
+    color: rgb(11, 0, 0);
+}
+
+.sidebar a {
+    display: block;
+    color: #1a1a1a !important;
+    padding: 12px 0;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #e8faff;
+    color: #1a1a1a !important;
+}
+
+/* ========================= ESTILO GERAL ========================= */
+
+body {
+    background: #F5F6F7;
+    color: #1a1a1a;
+    font-family: "Georgia", serif;
+    margin: 0;
+}
+
+.top-banner img {
+    width: 100%;
+}
+
+.titulo {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ========================= BOX PADRÃO ========================= */
+
+.box {
+    width: 90%;
+    margin: 20px auto;
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    border-left: 6px solid #9cefff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.box h2, .box h3 {
+    margin: 0;
+    color: #1a1a1a;
+}
+
+
+
+/* ========================= BOTÕES MATÉRIAS ========================= */
+
+.botoes-materias {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    background: white;
+    color: #1a1a1a;
+    padding: 12px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    border: 1px solid #9cefff;
+}
+
+.btn:hover {
+    background: #e8faff;
+    border-color: #9cefff;
+    transform: translateY(-2px);
+}
+
+/* ========================= CRONOGRAMA ========================= */
+
+.cronograma {
+    width: 90%;
+    margin: 20px auto;
+    display:flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.mes-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 6px solid #9cefff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.mes-titulo {
+    margin: 0 0 15px;
+    font-size: 22px;
+    color: #1a1a1a;
+}
+
+/* Evento */
+.evento {
+    background: #e8faff; /* azul clarinho puxando para #9cefff */
+    padding: 12px 14px;
+    margin: 12px 0;
+    border-radius:10px;
+    border-left: 6px solid #9cefff;
+}
+
+.data {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.nome {
+    color: #444;
+}
+
+/* ======= Animação suave ======= */
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.mes-box, .evento, .box {
+    animation: aparecer 0.5s ease;
+
+}
+
+/* ========================= CLUBES ========================= */
+
+.clubes-section {
+    width: 90%;
+    margin: 35px auto;
+}
+
+.clubes-section h2 {
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+/* Grid dos cards */
+.clubes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Card do clube */
+.clube-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border-left: 6px solid #9cefff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.clube-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Imagem */
+.clube-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Título */
+.clube-card h3 {
+    margin: 12px;
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+</style>
+</head>
+
+
+<body>
+
+    <!-- ======================= MENU LATERAL ======================= -->
+
+<!-- Checkbox invisível que controla abrir/fechar o menu -->
+<input type="checkbox" id="menu-toggle">
+
+<!-- Ícone hambúrguer que abre o menu -->
+<label for="menu-toggle" class="menu-icon">☰</label>
+
+<!-- Barra lateral do menu -->
+<aside class="sidebar">
+
+    <!-- Botão X para fechar o menu -->
+    <label for="menu-toggle" class="close-btn">✖</label>
+
+    <!-- Links do menu -->
+    <a href="index.html">Início</a>
+    <a href="linguagens.html">Linguagens</a>
+    <a href="humanas.html">Humanas</a>
+    <a href="exatas.html">Exatas</a>
+    <a href="natureza.html">Natureza</a>
+    <a href="ti.html">Curso TI</a>
+</aside>
+
+
+
+<!-- ======================= BANNER SUPERIOR ======================= -->
+<header class="top-banner">
+    <img src="banner.jpeg" alt="banner floral">
+</header>
+
+<!-- Título de boas-vindas -->
+<section class="titulo">
+    <h2>・ﾟ・✧ Seu lugar organizado ✧・ﾟ⋆</h2>
+</section>
+
+<!-- ======================= CAIXA DO EVENTO ======================= -->
+<div class="evento-grande">
+    
+    <!-- Imagem do evento -->
+    <img src="logo.png" alt="Imagem do evento">
+
+    <!-- Caixa com o texto do evento -->
+    <div class="texto-evento">
+
+        <!-- Título do evento -->
+        <h2 class="titulo-evento">Seja bem-vindo(a) ao portal escolar Inovação Jovem!</h2>
+
+        <!-- Texto explicativo -->
+        <p>
+            Aqui você encontrará informações importantes sobre eventos, atividades, matérias
+            e conteúdos organizados para facilitar seus estudos.
+            Nosso objetivo é oferecer um ambiente claro, prático e acessível para que sua 
+            experiência seja sempre a melhor possível. Explore, aprenda e aproveite!
+        </p>
+    </div>
+</div>
+
+<!-- ======================= BOX DO ENEM ======================= -->
+<section class="box">
+    <h3>౨ৎ ⋆ ࣪. ⸺ Se prepare pro ENEM!</h3>
+
+    <!-- Botões de escolha de matérias -->
+    <div class="botoes-materias">
+        <a class="btn" href="linguagens.html"> Linguagens</a>
+        <a class="btn" href="humanas.html"> Humanas</a>
+        <a class="btn" href="exatas.html"> Exatas</a>
+        <a class="btn" href="natureza.html"> Natureza</a>
+    </div>
+</section>
+
+<!-- ======================= Cronograma Escolar ======================= -->
+<section class="cronograma">
+    <h2>౨ৎ ⋆ ࣪. ⸺ Cronograma Trimestral</h2>
+    <!--Fevereiro-->
+
+    <div class="mes-box">
+    <h3 class="mes-titulo"> ・ﾟ・✧ Fevereiro</h3>
+
+    <div class="evento azul">
+        <span class="data">10/02</span>
+        <span class="nome">Inicio das aulas</span>
+    </div>
+
+    <div class="evento azul">
+        <span class="data">17/02</span>
+        <span class="nome">Começo do Pré-Enem, Monitoria e Iniciação Cíentifica</span>
+    </div>
+    
+    <div class="evento azul"> 
+        <span class="data">24/02 a 28/02</span>
+        <span class="nome">Avaliação Diagnóstica - 1 série </span>
+    </div>
+
+    </div>
+
+        <!--Março-->
+        <div class="mes-box">
+        <h3 class="mes-titulo"> ・ﾟ・✧ Março</h3>
+
+    <div class="evento roxo">
+        <span class="data">17/03</span>
+        <span class="nome">Divulgação da Eleição e perfil dos Representantes de turma</span>
+    </div>
+
+    <div class="evento roxo">
+        <span class="data">24/03</span>
+        <span class="nome">Ad de Redação</span>
+    </div>
+    
+    <div class="evento roxo"> 
+        <span class="data">31/03</span>
+        <span class="nome">Primeira reunião de representantes </span>
+    </div>
+
+        </div>
+
+</section>
+
+
+
+
+
+<!-- ======================= AVISOS ======================= -->
+<section class="box avisos">
+<div class="avisos">
+    
+    <!-- Texto à esquerda -->
+    <div class="avisos-texto">
+        <h2>Avisos da Semana ⭐</h2>
+    </div>
+
+    <div class="aviso-item">
+        📌 Reunião de Pais 15/02
+    </div>
+
+    <div class="aviso-item">
+        📌 Ad de Redação - Resultados liberados no portal
+    </div>
+
+
+    <!-- Foto à direita -->
+    <img class="avisos-imagem" src="avisos.jpeg" alt="Avisos Imagem">
+</div>
+</section>
+
+<!-- ======================= Clubes ======================= -->
+<section class="clubes-section">
+    <h2>౨ৎ ⋆ ࣪. ⸺ Clubes da Escola</h2>
+
+    <div class="clubes-grid">
+
+        <div class="clube-card">
+            <img src="poesia.jpeg" alt="Clube de Poesia">
+            <h3>Clube de Poesia</h3>
+        </div>
+
+        <div class="clube-card">
+            <img src="música.jpeg" alt="Clube de Música">
+            <h3>Clube de Música</h3>
+        </div>
+
+        <div class="clube-card">
+            <img src="dança.jpeg" alt="Clube de Dança">
+            <h3>Clube de Dança</h3>
+        </div>
+
+        <div class="clube-card">
+            <img src="teatro.jpeg" alt="Clube de Teatro">
+            <h3>Clube de Teatro</h3>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- ======================= BOX AD TRIMESTRAL ======================= -->
+<section class="box">
+    <h2>౨ৎ ⋆ ࣪. ⸺ AD Trimestral *</h2>
+
+    <div class="botoes-materias">
+        <a class="btn" href="linguagens.html"> Linguagens</a>
+        <a class="btn" href="humanas.html"> Humanas</a>
+        <a class="btn" href="exatas.html"> Exatas</a>
+        <a class="btn" href="natureza.html"> Natureza</a>
+    </div>
+</section>
+
+</body>
+</html>
+
